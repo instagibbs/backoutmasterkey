@@ -1,0 +1,8 @@
+[package]
+name = "backoutmasterkey"
+version = "0.1.0"
+authors = ["Gregory Sanders <gsanders87@gmail.com>"]
+
+[dependencies]
+bitcoin = "0.10"
+secp256k1 = "*"
