@@ -23,10 +23,9 @@ fn main() {
     }
     let v: Vec<&str> = input.split(' ').collect();
     assert_eq!(v.len(), 3);
-    let extpub_result = match bip32::ExtendedPubKey::from_base58check(v[0]).unwrap();
+    let extpub_result = bip32::ExtendedPubKey::from_base58check(v[0]).unwrap();
     let index = v[1].parse::<u32>().unwrap();
     let network = bitcoin::network::constants::Network::Bitcoin;
-    let pubkey = extpub_result.public_key;
     let ctx = secp256k1::Secp256k1::new();
 
     // Tweak to get to child privkey
