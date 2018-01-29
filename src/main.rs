@@ -4,6 +4,7 @@ use std::process::{self};
 extern crate bitcoin;
 extern crate secp256k1;
 extern crate core;
+#[macro_use] extern crate hex_literal;
 use bitcoin::util::bip32;
 use bitcoin::util::base58::FromBase58;
 use bitcoin::util::base58::ToBase58;
@@ -32,7 +33,7 @@ fn main() {
     let child_tweak_and_chaincode = extpub_result.ckd_pub_tweak(&ctx, bip32::ChildNumber::Normal(index)).unwrap();
     let mut child_tweak = child_tweak_and_chaincode.0;
     // (curve order N)-1 aka -1
-    let minusone : [u8; 32] = [0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xfe,0xba,0xae,0xdc,0xe6,0xaf,0x48,0xa0,0x3b,0xbf,0xd2,0x5e,0x8c,0xd0,0x36,0x41,0x40];
+    let minusone : [u8; 32] = hex!("fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364140");
     let minusone_key = secp256k1::key::SecretKey::from_slice(&ctx, &minusone).unwrap();
     child_tweak.mul_assign(&ctx, &minusone_key);
 
